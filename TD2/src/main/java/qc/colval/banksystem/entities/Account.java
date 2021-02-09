@@ -27,7 +27,5 @@ public class Account implements Serializable {
     private double balance;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @Column(name = "owner")
     private Client owner;
-
 }

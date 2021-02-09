@@ -15,7 +15,7 @@ import java.io.Serializable;
 @Entity
 public abstract class User implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.TABLE)
     @Column(name = "id")
     private int id;
 
@@ -35,7 +35,6 @@ public abstract class User implements Serializable {
     @Enumerated(EnumType.STRING)
     private Sex sex;
 
-    @Column(name = "main_address")
     @ManyToOne(fetch = FetchType.LAZY)
     private Address mainAddress;
 }
