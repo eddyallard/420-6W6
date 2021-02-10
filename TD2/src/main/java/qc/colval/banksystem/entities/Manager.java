@@ -18,6 +18,6 @@ public class Manager extends User{
     @Column(unique = true, name = "office_number")
     private int officeNumber;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "manager", fetch = FetchType.LAZY)
     private Set<Client> clients;
 }

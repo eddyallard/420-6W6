@@ -25,6 +25,6 @@ public class Address {
     @Column(name = "postal_code")
     private String postalCode;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "mainAddress")
     private Set<User> users;
 }

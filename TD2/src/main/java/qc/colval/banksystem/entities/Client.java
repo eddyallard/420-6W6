@@ -30,9 +30,9 @@ public class Client extends User{
     @Column(name = "nip")
     private int nip;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Manager manager;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
     private Set<Account> accounts;
 }
