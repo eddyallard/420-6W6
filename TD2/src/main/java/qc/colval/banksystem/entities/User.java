@@ -1,8 +1,6 @@
 package qc.colval.banksystem.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import qc.colval.banksystem.entities.enums.Sex;
 
 import javax.persistence.*;
@@ -35,6 +33,8 @@ public abstract class User implements Serializable {
     @Enumerated(EnumType.STRING)
     private Sex sex;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Address mainAddress;
 }

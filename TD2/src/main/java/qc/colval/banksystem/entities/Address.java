@@ -1,8 +1,6 @@
 package qc.colval.banksystem.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -25,6 +23,8 @@ public class Address {
     @Column(name = "postal_code")
     private String postalCode;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "mainAddress")
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "mainAddress", cascade = CascadeType.ALL)
     private Set<User> users;
 }

@@ -1,9 +1,6 @@
 package qc.colval.banksystem.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -18,6 +15,8 @@ public class Manager extends User{
     @Column(unique = true, name = "office_number")
     private int officeNumber;
 
-    @OneToMany(mappedBy = "manager", fetch = FetchType.LAZY)
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+    @OneToMany(mappedBy = "manager", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Client> clients;
 }

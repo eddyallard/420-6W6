@@ -79,6 +79,7 @@ public class BanksystemApplication {
         manager.setLastName("Isiakov");
         manager.setSex(Sex.Male);
         manager.setPhoneNumber("4934593423");
+        manager.setOfficeNumber(123);
 
         //Linking entities
         Set<User> users = new HashSet<User>();

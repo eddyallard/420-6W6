@@ -1,9 +1,6 @@
 package qc.colval.banksystem.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Generated;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import qc.colval.banksystem.entities.enums.AccountType;
 
 import javax.persistence.*;
@@ -27,6 +24,8 @@ public class Account implements Serializable {
     @Column(name = "balance")
     private double balance;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Client owner;
 }

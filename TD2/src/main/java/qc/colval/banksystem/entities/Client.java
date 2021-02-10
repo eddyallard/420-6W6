@@ -1,9 +1,6 @@
 package qc.colval.banksystem.entities;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import qc.colval.banksystem.entities.enums.MaritalStatus;
 
 import javax.persistence.*;
@@ -30,9 +27,13 @@ public class Client extends User{
     @Column(name = "nip")
     private int nip;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Manager manager;
 
-    @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @OneToMany(mappedBy = "owner", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Account> accounts;
 }
