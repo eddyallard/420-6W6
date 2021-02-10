@@ -26,6 +26,6 @@ public class Account implements Serializable {
     @Column(name = "balance")
     private double balance;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Client owner;
 }

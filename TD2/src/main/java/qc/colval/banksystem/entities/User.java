@@ -35,6 +35,6 @@ public abstract class User implements Serializable {
     @Enumerated(EnumType.STRING)
     private Sex sex;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Address mainAddress;
 }
