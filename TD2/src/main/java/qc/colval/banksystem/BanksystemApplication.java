@@ -19,26 +19,30 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 @SpringBootApplication
 public class BanksystemApplication {
     private final Logger log = LoggerFactory.getLogger(BanksystemApplication.class);
 
-    @Autowired
-    private AccountServiceImpl accountService;
-    @Autowired
-    private AddressServiceImpl addressService;
-    @Autowired
-    private ClientServiceImpl clientService;
-    @Autowired
-    private ManagerServiceImpl managerService;
+    private final AccountServiceImpl accountService;
+    private final AddressServiceImpl addressService;
+    private final ClientServiceImpl clientService;
+    private final ManagerServiceImpl managerService;
+
+    public BanksystemApplication(AccountServiceImpl accountService, AddressServiceImpl addressService, ClientServiceImpl clientService, ManagerServiceImpl managerService) {
+        this.accountService = accountService;
+        this.addressService = addressService;
+        this.clientService = clientService;
+        this.managerService = managerService;
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(BanksystemApplication.class, args);
     }
 
     @Bean
-    void populate(){
+    void populate() throws InterruptedException {
         //Declaring a few entities with no associations
         Client client1 = new Client();
         client1.setIncome(50000);
@@ -73,6 +77,10 @@ public class BanksystemApplication {
         account2.setBalance(9678.12d);
         account2.setType(AccountType.Saving);
 
+        Account account3 = new Account();
+        account3.setBalance(5645.34d);
+        account3.setType(AccountType.Checking);
+
         Manager manager = new Manager();
         manager.setEmail("theboss@gmail.com");
         manager.setFirstName("Vladimir");
@@ -96,6 +104,7 @@ public class BanksystemApplication {
 
         Set<Account> accounts2 = new HashSet<Account>();
         accounts2.add(account2);
+        accounts2.add(account3);
 
         client1.setManager(manager);
         client2.setManager(manager);
@@ -114,6 +123,28 @@ public class BanksystemApplication {
         managerService.create(manager);
         accountService.create(account1);
         accountService.create(account2);
+        accountService.create(account3);
         addressService.create(address);
+
+        //For some reason I need to wait a second before starting crud operations otherwise, find all after deletion omits one record.
+        TimeUnit.SECONDS.sleep(1);
+        //Testing a few crud operations
+        //READ client with id = 1
+        log.info("*** CLIENT 1 ***");
+        log.info(clientService.findOne(1).toString());
+        //READ ALL accounts
+        log.info("*** ALL ACCOUNTS ***");
+        accountService.findAll().forEach(account -> {
+            log.info(account.toString());
+        });
+        //DELETE account with id 2 and view if it was deleted
+        accountService.delete(2);
+        log.info("*** ALL ACCOUNTS AFTER DELETION ***");
+        accountService.findAll().forEach(account -> {
+            log.info(account.toString());
+        });
+        addressService.findAll().forEach(account -> {
+            log.info(account.toString());
+        });
     }
 }

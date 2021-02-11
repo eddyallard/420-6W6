@@ -10,6 +10,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
+@ToString(callSuper = true)
 @Table(name = "manager")
 public class Manager extends User{
     @Column(unique = true, name = "office_number")

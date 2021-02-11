@@ -11,12 +11,10 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@ToString(callSuper = true)
 @Table(name = "client")
 public class Client extends User{
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "client_id")
-    private int clientId;
-
+    //Didnt put a client id since user id is already unique.
     @Column(name = "income")
     private double income;
 
