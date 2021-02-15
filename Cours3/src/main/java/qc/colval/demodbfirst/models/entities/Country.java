@@ -1,12 +1,19 @@
 package qc.colval.demodbfirst.models.entities;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "country")
-public class Country {
+@NoArgsConstructor
+@AllArgsConstructor
+public class Country implements Serializable {
     @Id
     @Column(name = "country_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long countryId;
 
     @Column(name = "country")

@@ -1,16 +1,25 @@
 package qc.colval.demodbfirst.models.entities;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "customer")
-public class Customer {
+@NoArgsConstructor
+@AllArgsConstructor
+public class Customer implements Serializable {
     @Id
     @Column(name = "customer_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long customerId;
 
     @Column(name = "store_id")
-    private long storeId;
+    @JoinColumn(name = "store_id", referencedColumnName = "store_id")
+    @ManyToOne(optional = false)
+    private Store store;
 
     @Column(name = "first_name")
     private String firstName;
@@ -22,7 +31,9 @@ public class Customer {
     private String email;
 
     @Column(name = "address_id")
-    private long addressId;
+    @ManyToOne
+    @JoinColumn(name = "address_id", referencedColumnName = "address_id")
+    private Address address;
 
     @Column(name = "active")
     private Byte active;
@@ -41,12 +52,12 @@ public class Customer {
         this.customerId = customerId;
     }
 
-    public long getStoreId() {
-        return this.storeId;
+    public Store getStore() {
+        return this.store;
     }
 
-    public void setStoreId(long storeId) {
-        this.storeId = storeId;
+    public void setStore(Store store) {
+        this.store = store;
     }
 
     public String getFirstName() {
@@ -73,12 +84,12 @@ public class Customer {
         this.email = email;
     }
 
-    public long getAddressId() {
-        return this.addressId;
+    public Address getAddress() {
+        return this.address;
     }
 
-    public void setAddressId(long addressId) {
-        this.addressId = addressId;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public Byte getActive() {

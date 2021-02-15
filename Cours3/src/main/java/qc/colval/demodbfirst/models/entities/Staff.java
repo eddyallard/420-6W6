@@ -1,12 +1,19 @@
 package qc.colval.demodbfirst.models.entities;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "staff")
-public class Staff {
+@NoArgsConstructor
+@AllArgsConstructor
+public class Staff implements Serializable {
     @Id
     @Column(name = "staff_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long staffId;
 
     @Column(name = "first_name")
@@ -16,7 +23,9 @@ public class Staff {
     private String lastName;
 
     @Column(name = "address_id")
-    private long addressId;
+    @ManyToOne
+    @JoinColumn(name = "address_id", referencedColumnName = "address_id")
+    private Address address;
 
     @Column(name = "picture")
     private byte[] picture;
@@ -63,12 +72,12 @@ public class Staff {
         this.lastName = lastName;
     }
 
-    public long getAddressId() {
-        return this.addressId;
+    public Address getAddress() {
+        return this.address;
     }
 
-    public void setAddressId(long addressId) {
-        this.addressId = addressId;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public byte[] getPicture() {

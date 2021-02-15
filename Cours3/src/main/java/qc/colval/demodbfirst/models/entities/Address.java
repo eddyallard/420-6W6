@@ -1,12 +1,19 @@
 package qc.colval.demodbfirst.models.entities;
 
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "address")
-public class Address {
+@NoArgsConstructor
+@AllArgsConstructor
+public class Address implements Serializable {
     @Id
     @Column(name = "address_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long addressId;
 
     @Column(name = "address")
@@ -19,7 +26,9 @@ public class Address {
     private String district;
 
     @Column(name = "city_id")
-    private long cityId;
+    @ManyToOne
+    @JoinColumn(name = "city_id", referencedColumnName = "city_id")
+    private City city;
 
     @Column(name = "postal_code")
     private String postalCode;
@@ -65,12 +74,12 @@ public class Address {
         this.district = district;
     }
 
-    public long getCityId() {
-        return this.cityId;
+    public City getCity() {
+        return this.city;
     }
 
-    public void setCityId(long cityId) {
-        this.cityId = cityId;
+    public void setCity(City city) {
+        this.city = city;
     }
 
     public String getPostalCode() {
