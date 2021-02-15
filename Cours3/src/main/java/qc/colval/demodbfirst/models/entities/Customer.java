@@ -39,10 +39,28 @@ public class Customer implements Serializable {
     private Byte active;
 
     @Column(name = "create_date")
+    @Basic(optional = false)
     private java.sql.Timestamp createDate;
 
     @Column(name = "last_update")
+    @Basic(optional = false)
     private java.sql.Timestamp lastUpdate;
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "customerId=" + customerId +
+                ", store=" + store +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", address=" + address +
+                ", active=" + active +
+                ", createDate=" + createDate +
+                ", lastUpdate=" + lastUpdate +
+                '}';
+    }
+
 
     public long getCustomerId() {
         return this.customerId;

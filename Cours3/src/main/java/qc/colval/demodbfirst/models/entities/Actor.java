@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Entity
@@ -17,9 +18,11 @@ public class Actor implements Serializable {
     private long actorId;
 
     @Column(name = "first_name")
+    @Size(min = 2, max = 50)
     private String firstName;
 
     @Column(name = "last_name")
+    @Size(min = 2, max = 50)
     private String lastName;
 
     @Column(name = "last_update")

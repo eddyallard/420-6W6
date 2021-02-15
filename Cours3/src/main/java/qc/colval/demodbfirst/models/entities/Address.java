@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Entity
@@ -17,9 +18,11 @@ public class Address implements Serializable {
     private long addressId;
 
     @Column(name = "address")
+    @Size(min = 2, max = 50)
     private String address;
 
     @Column(name = "address2")
+    @Size(min = 2, max = 50)
     private String address2;
 
     @Column(name = "district")
