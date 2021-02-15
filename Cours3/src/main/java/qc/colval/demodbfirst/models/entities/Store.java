@@ -11,17 +11,17 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Store implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @Id
     @Column(name = "store_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long storeId;
 
-    @Column(name = "manager_staff_id")
     @OneToOne
     @JoinColumn(name = "manager_staff_id", referencedColumnName = "staff_id")
     private Staff managerStaff;
 
-    @Column(name = "address_id")
     @OneToOne
     @JoinColumn(name = "address_id", referencedColumnName = "address_id")
     private Address address;

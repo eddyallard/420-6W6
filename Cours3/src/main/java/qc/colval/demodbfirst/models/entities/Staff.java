@@ -11,6 +11,8 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Staff implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @Id
     @Column(name = "staff_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,7 +24,7 @@ public class Staff implements Serializable {
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "address_id")
+
     @ManyToOne
     @JoinColumn(name = "address_id", referencedColumnName = "address_id")
     private Address address;

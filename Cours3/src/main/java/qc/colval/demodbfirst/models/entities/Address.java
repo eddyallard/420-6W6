@@ -12,6 +12,8 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Address implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     @Id
     @Column(name = "address_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,7 +30,6 @@ public class Address implements Serializable {
     @Column(name = "district")
     private String district;
 
-    @Column(name = "city_id")
     @ManyToOne
     @JoinColumn(name = "city_id", referencedColumnName = "city_id")
     private City city;
