@@ -18,6 +18,8 @@ public interface CustomerService{
 
     List<Customer> getAllCustomerSortedByLastName();
 
+    List<Customer> getAllCustomerWithFirstNameSubStr(String subStr);
+
     Customer updateFirstNameAndLastName(Long customerId,String firstName,String lastName);
 
 }

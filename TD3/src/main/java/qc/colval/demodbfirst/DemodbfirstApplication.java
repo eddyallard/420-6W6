@@ -40,6 +40,10 @@ public class DemodbfirstApplication {
         //update customer
         Customer customerUpdated = customerService.updateFirstNameAndLastName((long) 1, "STEPHANIE", "CLARA");
         log.info("Customer updated {} ", customerUpdated.toString());
+
+        //Testing find customer by firstName subStr
+        List<Customer> customers2 = customerService.getAllCustomerWithFirstNameSubStr("BAR");
+        log.info("ALL CUSTOMERS STARTING IN \"BAR\" {}", customers2.toString());
     }
 
 

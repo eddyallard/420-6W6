@@ -42,6 +42,11 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    public List<Customer> getAllCustomerWithFirstNameSubStr(String subStr) {
+        return customerRepository.findByFirstNameSubStr(subStr);
+    }
+
+    @Override
     public Customer updateFirstNameAndLastName(Long customerId, String firstName, String lastName) {
         Optional<Customer> customerRecover = this.readOne(customerId);
         if (customerRecover.isEmpty()) throw new RuntimeException("Customer Id not found");
