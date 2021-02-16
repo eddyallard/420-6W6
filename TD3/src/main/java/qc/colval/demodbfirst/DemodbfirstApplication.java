@@ -33,7 +33,6 @@ public class DemodbfirstApplication {
         //get all customers sorted by lastname
         List<Customer> customers1 = customerService.getAllCustomerSortedByLastName();
         log.info("All customers sorted by lastname {} ", customers1.toString());
-
         //get customer by id
         Optional<Customer> customerRecover = customerService.readOne((long) 11);
         customerRecover.ifPresent(c -> log.info("Get one customer {} ", c.toString()));

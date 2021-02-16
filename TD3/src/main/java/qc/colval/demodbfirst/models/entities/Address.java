@@ -11,6 +11,10 @@ import java.io.Serializable;
 @Table(name = "address")
 @NoArgsConstructor
 @AllArgsConstructor
+@NamedQueries({
+        @NamedQuery(name = "Address.findByPostalCode", query = "select a from Address a where a.postalCode = :postalCode"),
+        @NamedQuery(name = "Address.findByPhone", query = "select a from Address a where a.phone = :phone")
+})
 public class Address implements Serializable {
     private static final long serialVersionUID = 1L;
 

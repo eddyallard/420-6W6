@@ -17,6 +17,8 @@ import java.io.Serializable;
         , @NamedQuery(name = "Customer.findByCreateDate", query = "SELECT c FROM Customer c WHERE c.createDate = :createDate")
         , @NamedQuery(name = "Customer.findByLastUpdate", query = "SELECT c FROM Customer c WHERE c.lastUpdate = :lastUpdate")
         , @NamedQuery(name = "Customer.findAllCustomerSortedByLastName", query = "SELECT c FROM Customer c order by c.lastName asc ")
+        , @NamedQuery(name = "Customer.findByCreateDate", query = "select c from Customer c where c.createDate = :createDate")
+        , @NamedQuery(name = "Customer.findByFirstNameSubStr", query = "select c from Customer c where substring(c.firstName, 0, length(:subStr)) = :subStr")
 })
 @NoArgsConstructor
 @AllArgsConstructor

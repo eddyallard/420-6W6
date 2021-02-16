@@ -1,5 +1,6 @@
 package qc.colval.demodbfirst.models.entities;
 
+import jdk.jfr.Name;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +11,10 @@ import java.io.Serializable;
 @Table(name = "staff")
 @NoArgsConstructor
 @AllArgsConstructor
+@NamedQueries({
+        @NamedQuery(name = "Staff.findByFirstName", query = "select s from Staff s where s.firstName = :firstName"),
+        @NamedQuery(name = "Staff.findByFirstNameAndLastName", query = "select s from Staff s where s.firstName = :firstName and s.lastName = :lastName")
+})
 public class Staff implements Serializable {
     private static final long serialVersionUID = 1L;
 

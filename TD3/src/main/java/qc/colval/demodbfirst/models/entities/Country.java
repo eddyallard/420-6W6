@@ -10,6 +10,9 @@ import java.io.Serializable;
 @Table(name = "country")
 @NoArgsConstructor
 @AllArgsConstructor
+@NamedQueries({
+        @NamedQuery(name = "Country.findByCountry", query = "select c from Country c where c.country = :country")
+})
 public class Country implements Serializable {
     private static final long serialVersionUID = 1L;
 
