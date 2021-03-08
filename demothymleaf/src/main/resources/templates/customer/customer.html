@@ -10,7 +10,7 @@
 <div th:replace="fragments/header::top-nav"></div>
 <!-- BODY -->
 <h1>Nombre de customers <span th:text="${customerCount}"></span></h1>
-<form>
+<form method="post" th:action="@{/do_search_name}" th:object="${searchNames}">
     <input type="text" placeholder="rechercher..."/>
     <button type="submit">click</button>
 </form>
