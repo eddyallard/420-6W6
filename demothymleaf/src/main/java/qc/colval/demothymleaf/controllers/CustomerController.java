@@ -3,15 +3,13 @@ package qc.colval.demothymleaf.controllers;
 import com.sun.xml.bind.v2.runtime.output.SAXOutput;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import qc.colval.demothymleaf.controllers.viewmodels.SearchNameViewModel;
 import qc.colval.demothymleaf.models.entities.Customer;
 import qc.colval.demothymleaf.services.impl.CustomerService;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Controller
@@ -29,12 +27,24 @@ public class CustomerController {
         model.addAttribute("customerCount", customerService.readAll().size());
         return "customer/customer";
     }
+    @GetMapping("/{id}")
+    public String getCustomer(Model model, @PathVariable Long id){
+
+        Optional<Customer> customer=customerService.readOne(id);
+
+        model.addAttribute("customer",customer.get());
+
+        return "customer/detail";
+
+    }
+
 
     @PostMapping("/do_search_name")
     public String searchCustomerByName(Model model, SearchNameViewModel searchNameViewModel){
-        List<Customer> customersWithName = customerService.getAllCustomerWithFirstNameSubStr(searchNameViewModel.getFirstname());
+        String firstNameSubStr = searchNameViewModel.getFirstname();
+        List<Customer> customersWithName = customerService.getAllCustomerWithFirstNameSubStr(firstNameSubStr);
         int nbCustomers = customersWithName.size();
-        model.addAttribute("searchNames", new SearchNameViewModel());
+        model.addAttribute("searchNames", new SearchNameViewModel(firstNameSubStr));
         model.addAttribute("allCustomer",customersWithName);
         model.addAttribute("customerCount", nbCustomers);
         return "customer/customer";
