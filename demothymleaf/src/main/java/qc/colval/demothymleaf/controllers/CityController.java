@@ -4,14 +4,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import qc.colval.demothymleaf.services.ICityService;
+import qc.colval.demothymleaf.services.CityService;
 
 @Controller
 @RequestMapping("/city")
 public class CityController {
-    private final ICityService cityService;
+    private final CityService cityService;
 
-    public CityController(ICityService cityService) {
+    public CityController(CityService cityService) {
         this.cityService = cityService;
     }
 

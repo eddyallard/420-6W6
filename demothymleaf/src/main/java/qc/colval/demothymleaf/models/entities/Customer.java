@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 @Table(name = "customer")
@@ -49,15 +50,15 @@ public class Customer implements Serializable {
     private Address address;
 
     @Column(name = "active")
-    private Byte active;
+    private boolean active;
 
     @Column(name = "create_date")
     @Basic(optional = false)
-    private java.sql.Timestamp createDate;
+    private Date createDate;
 
     @Column(name = "last_update")
     @Basic(optional = false)
-    private java.sql.Timestamp lastUpdate;
+    private Date lastUpdate;
 
     @Override
     public String toString() {
@@ -123,27 +124,27 @@ public class Customer implements Serializable {
         this.address = address;
     }
 
-    public Byte getActive() {
+    public boolean getActive() {
         return this.active;
     }
 
-    public void setActive(Byte active) {
+    public void setActive(boolean active) {
         this.active = active;
     }
 
-    public java.sql.Timestamp getCreateDate() {
+    public Date getCreateDate() {
         return this.createDate;
     }
 
-    public void setCreateDate(java.sql.Timestamp createDate) {
+    public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
 
-    public java.sql.Timestamp getLastUpdate() {
+    public Date getLastUpdate() {
         return this.lastUpdate;
     }
 
-    public void setLastUpdate(java.sql.Timestamp lastUpdate) {
+    public void setLastUpdate(Date lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
 }
