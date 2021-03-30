@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import qc.colval.demothymleaf.services.CustomerService;
 
 @Controller
-@RequestMapping("/")
 public class IndexController {
     private final CustomerService customerService;
 
@@ -15,9 +14,15 @@ public class IndexController {
         this.customerService = customerService;
     }
 
-    @GetMapping("index/")
+    @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("nbCustomer", customerService.countAllCustomer());
         return "index/index";
     }
+
+    @GetMapping("/authentification")
+    public String login() {
+        return "authentification/authentification";
+    }
+
 }
