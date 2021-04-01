@@ -1,4 +1,4 @@
-package qc.colval.demothymleaf.controllers.viewmodels;
+package qc.colval.demothymleaf.models.view_models;
 
 public class SearchNameViewModel {
     private String firstname;

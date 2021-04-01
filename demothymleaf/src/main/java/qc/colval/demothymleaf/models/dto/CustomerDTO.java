@@ -1,8 +1,11 @@
-package qc.colval.demothymleaf.models.DTO;
+package qc.colval.demothymleaf.models.dto;
 
 import java.util.Date;
+
+import lombok.AllArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
+@AllArgsConstructor
 public class CustomerDTO {
 
     private Long customerId;
