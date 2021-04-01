@@ -11,7 +11,6 @@ import qc.colval.demothymleaf.models.entities.Customer;
 import qc.colval.demothymleaf.services.CustomerService;
 import qc.colval.demothymleaf.services.mappers.EntityMapper;
 
-import javax.swing.text.html.parser.Entity;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -24,15 +23,15 @@ public class CustomerRessource {
     private final EntityMapper<Customer, CustomerDTO> mapper;
 
     @GetMapping
-    public List<CustomerDTO> getAll(){
-        return customerService.readAll().stream()
+    public List<CustomerDTO> getAll() {
+        return this.customerService.readAll().stream()
                 .map(mapper::entityToDto)
                 .collect(Collectors.toList());
     }
 
     @GetMapping("{id}")
-    public ResponseEntity<?> getById(@PathVariable Long id){
-        Optional<Customer> customer = customerService.readOne(id);
+    public ResponseEntity<?> getById(@PathVariable Long id) {
+        Optional<Customer> customer = this.customerService.readOne(id);
         return customer.map(value -> ResponseEntity.ok(mapper.entityToDto(value)))
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
