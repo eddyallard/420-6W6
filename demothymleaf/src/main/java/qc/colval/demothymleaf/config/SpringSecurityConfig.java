@@ -18,7 +18,11 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/assets/**").permitAll() //permitAll = permets CES requêtes sans login
+<<<<<<< HEAD
                 .antMatchers("/api/**").permitAll()
+=======
+                .antMatchers("/api/**").permitAll() //permet d'accéder a l'api sans se logger.
+>>>>>>> parent of cb483be (renaming)
                 .anyRequest().authenticated() //pour toute autre requêtes: doit être authentifié
                 .and() //fin de la configuration des ressources
                 .formLogin() //connexion via un formulaire
