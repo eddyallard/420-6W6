@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
+    <title>Customers</title>
+    <link  rel="stylesheet" type="text/css" th:href="@{/css/style1.css}"/>
+</head>
+<body>
+<!-- HEADER -->
+<div th:replace="fragments/header::top-nav"></div>
+<!-- BODY -->
+<h1>Nombre de customers <span th:text="${customerCount}"></span></h1>
+<form method="post" th:action="@{/customer/do_search_name}" th:object="${searchNames}">
+    <input required th:field="*{firstname}" th:value="${searchNames.getFirstname()}"
+           type="text" placeholder="rechercher..."/>
+    <button type="submit">click</button>
+</form>
+
+<br>
+<a th:href="${'/customer/new'}" class="btn" role="button"
+   aria-disabled="true">Ajouter</a>
+<br>
+
+
+<table class="table">
+    <thead>
+    <th>Nom</th>
+    <th>Prenom(s)</th>
+    <th>Email</th>
+    <th>Ville</th>
+    <th>Pays</th>
+    <th>Detail</th>
+    <th>Modifier</th>
+    <th>Supprimer</th>
+    </thead>
+    <tbody>
+    <tr th:each="customer:${allCustomer}">
+        <td th:text="${customer.lastName}"></td>
+        <td th:text="${customer.firstName}"></td>
+        <td th:text="${customer.email}"></td>
+        <td th:text="${customer.address.city.city}"></td>
+        <td th:text="${customer.address.city.country.country}"></td>
+        <td><a th:href="${'/customer/'+customer.customerId}" >Detail</a></td>
+        <td><a th:href="${'/customer/'+customer.customerId}" >Modifier</a></td>
+        <td><a th:href="${'/customer/delete/'+customer.customerId}" >Supprimer</a></td>
+    </tr>
+    </tbody>
+</table>
+<!-- FOOTER -->
+<footer th:replace="fragments/footer::footer"></footer>
+</body>
+</html>

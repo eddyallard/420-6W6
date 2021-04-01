@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/css/style1.css}" rel="stylesheet" />
+</head>
+<body>
+    <!-- HEADER -->
+    <div th:replace="fragments/header::top-nav"></div>
+    <!-- BODY -->
+    <h1 class="card-title" th:text="${nbCustomer}"></h1>
+    <!-- FOOTER -->
+    <footer th:replace="fragments/footer::footer"></footer>
+</body>
+</html>
